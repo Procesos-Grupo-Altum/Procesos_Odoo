@@ -12,8 +12,6 @@ class PazySalvo(models.Model):
 
     name = fields.Char(string='Nombre Empleado', invisible="1")
 
-
-
     employee_id = fields.Many2one('hr.employee', string='Nombre Empleado', index=True)
 
     image_1920 = fields.Binary(
@@ -22,8 +20,6 @@ class PazySalvo(models.Model):
         store=False,
         string='Foto'
     )
-
-
 
     state = fields.Selection(
         selection=[
@@ -37,64 +33,66 @@ class PazySalvo(models.Model):
 
     )
 
+    por_que_1 = fields.Char(string='1 Por Qué?', store=True, copied=True, tracking=0, )
+    por_que_2 = fields.Char(string='2 Por Qué?', store=True, copied=True, tracking=0, )
+    por_que_3 = fields.Char(string='3 Por Qué?', store=True, copied=True, tracking=0, )
+    por_que_4 = fields.Char(string='4 Por Qué?', store=True, copied=True, tracking=0, )
+    compromiso_1 = fields.Char(string='Compromiso 1', store=True, copied=True, tracking=0, )
+    compromiso_2 = fields.Char(string='Compromiso 2', store=True, copied=True, tracking=0, )
+    compromiso_3 = fields.Char(string='Compromiso 3', store=True, copied=True, tracking=0, )
+    fecha_vinculacion = fields.Date(string='Fecha Vinculacion', store=True, readonly=True, tracking=1, )
+    firma_capacitacion = fields.Binary(string='Capacitación', store=True, copied=True, tracking=0, )
+    firma_comunicaciones = fields.Binary(string='Comunicaciones', store=True, copied=True, tracking=0, )
+    firma_contabilidad = fields.Binary(string='Contabilidad', store=True, copied=True, tracking=0, )
+    firma_creditos = fields.Binary(string='Créditos', store=True, copied=True, tracking=0, )
+    firma_del_extrabajador = fields.Binary(string='Firma Del Extrabajador', store=True, copied=True, tracking=0, )
+    firma_del_responsable = fields.Binary(string='Firma Del Responsable', store=True, copied=True, tracking=0, )
+    firma_disciplina_e_investigaciones = fields.Binary(string='Disciplina E Investigaciones', store=True, copied=True,
+                                                       tracking=0, )
+    firma_extrabajador = fields.Binary(string='Firma Del Extrabajador', store=True, copied=True, tracking=0, )
+    firma_gestion_humana = fields.Binary(string='Gestión Humana', store=True, copied=True, tracking=0, )
+    firma_intendencia = fields.Binary(string='Intendencia', store=True, copied=True, tracking=0, )
+    firma_jefe_inmediato_administrativos = fields.Binary(string='Jefe Inmediato (Administrativos)', store=True,
+                                                         copied=True, tracking=0, )
+    firma_nomina = fields.Binary(string='Nomina', store=True, copied=True, tracking=0, )
+    firma_operaciones = fields.Binary(string='Operaciones', store=True, copied=True, tracking=0, )
+    firma_renovaciones = fields.Binary(string='Renovaciones', store=True, copied=True, tracking=0, )
+    firma_responsable = fields.Binary(string='Firma Del Responsable', store=True, copied=True, tracking=1, )
+    firma_salud_ocupacional = fields.Binary(string='Salud Ocupacional', store=True, copied=True, tracking=0, )
+    firma_servicios_generales = fields.Binary(string='Servicios Generales', store=True, copied=True, tracking=0, )
+    firma_sistemas = fields.Binary(string='Sistemas', store=True, copied=True, tracking=0, )
+    identification_id = fields.Char(string='Nº identificación', readonly=True, tracking=100, )
+    placa = fields.Char(string='Placa', readonly=True, tracking=0, )
+    settlement_date = fields.Date(string='Fecha Retiro', store=True, copied=True, tracking=0, )
+    user_id_del_extrabajador = fields.Binary(string='Usuario del Extrabajador', store=True, readonly=True, tracking=0, )
+    write_date_capacitacion = fields.Datetime(string='Fecha Firma Capacitación', store=True, readonly=True,
+                                              tracking=0, )
+    write_date_comunicaciones = fields.Datetime(string='Fecha Firma Comunicaciones', store=True, readonly=True,
+                                                tracking=0, )
+    write_date_contabilidad = fields.Datetime(string='Fecha Firma Contabilidad', store=True, readonly=True,
+                                              tracking=0, )
+    write_date_creditos = fields.Datetime(string='Fecha Firma Créditos', store=True, readonly=True, tracking=0, )
+    write_date_del_extrabajador = fields.Datetime(string='Fecha Firma Del Extrabajador', store=True, readonly=True,
+                                                  tracking=0, )
+    write_date_disciplina_e_investigaciones = fields.Datetime(string='Fecha Firma Disciplina E Investigaciones',
+                                                              store=True, readonly=True, tracking=0, )
+    write_date_gestion_humana = fields.Datetime(string='Fecha Firma Gestión Humana', store=True, readonly=True,
+                                                tracking=0, )
+    write_date_intendencia = fields.Datetime(string='Fecha Firma Intendencia', store=True, readonly=True, tracking=0, )
+    write_date_jefe_inmediato_administrativos = fields.Datetime(string='Fecha Firma Jefe Inmediato (Administrativos)',
+                                                                store=True, readonly=True, tracking=0, )
+    write_date_nomina = fields.Datetime(string='Fecha Firma Nomina', store=True, readonly=True, tracking=0, )
+    write_date_operaciones = fields.Datetime(string='Fecha Firma Operaciones', store=True, readonly=True, tracking=0, )
+    write_date_renovaciones = fields.Datetime(string='Fecha Firma Renovaciones', store=True, readonly=True,
+                                              tracking=0, )
+    write_date_responsable = fields.Datetime(string='Fecha Firma Responsable', store=True, readonly=True, tracking=0, )
+    write_date_salud_ocupacional = fields.Datetime(string='Fecha Firma Salud Ocupacional', store=True, readonly=True,
+                                                   tracking=0, )
+    write_date_servicios_generales = fields.Datetime(string='Fecha Firma Servicios Generales', store=True,
+                                                     readonly=True, tracking=0, )
+    write_date_sistemas = fields.Datetime(string='Fecha Firma Sistemas', store=True, readonly=True, tracking=0, )
 
 
-    x_1_entrego_carnet_presentacion = fields.Boolean(
-        string='1. Entrego Carnet de Presentacion',
-        help='Entrego el carnet de presentacion del empleado para el Paz y Salvo',
-        required=False,
-        default= False,
-    )
-
-    x_2_entrego_carnet_arl = fields.Boolean(
-        string='2. Entrego Carnet de ARL',
-        help='Entrego el carnet de la Administradora de Riesgos Laborales (ARL) para el Paz y Salvo',
-        required=False,
-        default= False,
-    )
-    x_3_entrego_carnet_eps = fields.Boolean(
-        string='3. Entrego Carnet de EPS',
-        help='Entrego el carnet de la Entidad Promotora de Salud (EPS) para el Paz y Salvo',
-        required=False,
-        default= False,
-    )
-
-    x_4_entrego_tarjeta_proximidad = fields.Boolean(
-        string='4. Entrego Tarjeta de Proximidad',
-        help='Entrego la tarjeta de proximidad para el Paz y Salvo',
-        required=False,
-        default= False,
-    )
-
-    x_1_por_que = fields.Char(
-        string='1. Por que?',
-        help='Por que no entrego el carnet de presentacion?',
-        required=False)
-
-    x_2_por_que = fields.Char(
-        string='2. Por que?',
-        help='Por que no entrego el carnet de Arl?',
-        required=False)
-
-    x_3_por_que = fields.Char(
-        string='3. Por que?',
-        help='Por que no entrego el carnet de EPS?',
-        required=False)
-
-    x_4_por_que = fields.Char(
-        string='4. Por que?',
-        help='Por que no entrego la tarjeta de proximidad?',
-        required=False)
-
-    x_contract_id = fields.Many2one(
-        'hr.contract', string='Contrato',
-        domain="[('employee_id', '=', x_employee_id)]"
-    )
-
-    x_employee_id = fields.Many2one(
-        'hr.employee', string='Empleado', readonly=True,
-        default=lambda self: self.env.user.employee_id,
-        compute='_compute_employee_id', store=True)
 
     def aceptar(self):
         print('Bienvenido')

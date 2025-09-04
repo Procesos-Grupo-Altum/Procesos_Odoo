@@ -421,19 +421,19 @@ class AnticipoCliente(models.Model):
                               comodel_name='sale.order', )
     user_id = fields.Many2one(string='Usuario', store=True, copied=True, tracking=100, comodel_name='res.users', )
 
-    failed_message_ids = fields.One2many(comodel_name='mail.message', inverse_name='res_id', string='Failed Messages', readonly=True,
-        domain=lambda self: [
-            ('model', '=', self._name),
-            ('message_type', '=', 'email'),
-            ('failure_type', '!=', False),
-        ],)
+    # failed_message_ids = fields.One2many(comodel_name='mail.message', inverse_name='res_id', string='Failed Messages', readonly=True,
+    #     domain=lambda self: [
+    #         ('model', '=', self._name),
+    #         ('message_type', '=', 'email'),
+    #         ('failure_type', '!=', False),
+    #     ],)
     message_follower_ids = fields.One2many(comodel_name='mail.followers', inverse_name='res_id', string='Followers', readonly=True, domain=lambda self: [('res_model', '=', self._name)],)
-    message_ids = fields.One2many(comodel_name='mail.message', inverse_name='res_id', string='Messages', readonly=True, domain=lambda self: [('model', '=', self._name)],)
-    website_message_ids = fields.One2many(comodel_name='mail.message', inverse_name='res_id', string='Website Messages', readonly=True,
-        domain=lambda self: [
-            ('model', '=', self._name),
-            ('message_type', '=', 'comment'),
-        ],)
+    # message_ids = fields.One2many(comodel_name='mail.message', inverse_name='res_id', string='Messages', readonly=True, domain=lambda self: [('model', '=', self._name)],)
+    # website_message_ids = fields.One2many(comodel_name='mail.message', inverse_name='res_id', string='Website Messages', readonly=True,
+    #     domain=lambda self: [
+    #         ('model', '=', self._name),
+    #         ('message_type', '=', 'comment'),
+    #     ],)
 
 
 class AnticipoProveedor(models.Model):
@@ -503,19 +503,19 @@ class AnticipoProveedor(models.Model):
     user_id = fields.Many2one(string='Usuario', store=True, copied=True, tracking=100, comodel_name='res.users', )
 
     activity_ids = fields.One2many(comodel_name='mail.activity', inverse_name='res_id', string='Activities', readonly=True, domain=lambda self: [('res_model', '=', self._name)],)
-    failed_message_ids = fields.One2many(comodel_name='mail.message', inverse_name='res_id', string='Failed Messages', readonly=True,
-        domain=lambda self: [
-            ('model', '=', self._name),
-            ('message_type', '=', 'email'),
-            ('failure_type', '!=', False),
-        ],)
+    # failed_message_ids = fields.One2many(comodel_name='mail.message', inverse_name='res_id', string='Failed Messages', readonly=True,
+    #     domain=lambda self: [
+    #         ('model', '=', self._name),
+    #         ('message_type', '=', 'email'),
+    #         ('failure_type', '!=', False),
+    #     ],)
     message_follower_ids = fields.One2many(comodel_name='mail.followers', inverse_name='res_id', string='Followers', readonly=True, domain=lambda self: [('res_model', '=', self._name)],)
-    message_ids = fields.One2many(comodel_name='mail.message', inverse_name='res_id', string='Messages', readonly=True, domain=lambda self: [('model', '=', self._name)],)
-    website_message_ids = fields.One2many(comodel_name='mail.message', inverse_name='res_id', string='Website Messages', readonly=True,
-        domain=lambda self: [
-            ('model', '=', self._name),
-            ('message_type', '=', 'comment'),
-        ],)
+    # message_ids = fields.One2many(comodel_name='mail.message', inverse_name='res_id', string='Messages', readonly=True, domain=lambda self: [('model', '=', self._name)],)
+    # website_message_ids = fields.One2many(comodel_name='mail.message', inverse_name='res_id', string='Website Messages', readonly=True,
+    #     domain=lambda self: [
+    #         ('model', '=', self._name),
+    #         ('message_type', '=', 'comment'),
+    #     ],)
 
 
 class AgedPartnerBalances(models.Model):
@@ -577,6 +577,31 @@ class VencidaporPagar(models.Model):
     partner_name = fields.Char(string='Partner Name', store=True, copied=True, tracking=0, )
     partner_trust = fields.Char(string='Partner Trust', store=True, copied=True, tracking=0, )
     report_date = fields.Date(string='Report Date', store=True, copied=True, tracking=0, )
+    account_id = fields.Many2one(string='Account', store=True, copied=True, tracking=0,
+                                 comodel_name='account.account', )
+    analytic_account_id = fields.Many2one(string='Analytic Account', store=True, copied=True, tracking=0,
+                                          comodel_name='account.analytic.account', )
+    analytic_tag_ids = fields.Many2many(string='Analytic Tag', store=True, copied=True, tracking=0,
+                                        comodel_name='account.analytic.tag', )
+    balance = fields.Monetary(string='Saldo', store=True, copied=True, tracking=0, )
+    company_id = fields.Many2one(string='Company', store=True, copied=True, tracking=0, comodel_name='res.company', )
+    credit = fields.Monetary(string='Credit', store=True, copied=True, tracking=0, )
+    currency_id = fields.Many2one(string='Moneda', store=True, copied=True, tracking=0, comodel_name='res.currency', )
+    debit = fields.Monetary(string='Debit', store=True, copied=True, tracking=0, )
+    journal_id = fields.Many2one(string='Journal', store=True, copied=True, tracking=0,
+                                 comodel_name='account.journal', )
+    move_id = fields.Many2one(string='Move', store=True, copied=True, tracking=0, comodel_name='account.move', )
+    partner_id = fields.Many2one(string='Asociado', store=True, copied=True, tracking=0, comodel_name='res.partner', )
+    payment_id = fields.Many2one(string='Payment', store=True, copied=True, tracking=0,
+                                 comodel_name='account.payment', )
+    period0 = fields.Monetary(string='As of: ', store=True, copied=True, tracking=0, )
+    period1 = fields.Monetary(string='1 - 30', store=True, copied=True, tracking=0, )
+    period2 = fields.Monetary(string='31 - 60', store=True, copied=True, tracking=0, )
+    period3 = fields.Monetary(string='61 - 90', store=True, copied=True, tracking=0, )
+    period4 = fields.Monetary(string='91 - 120', store=True, copied=True, tracking=0, )
+    period5 = fields.Monetary(string='Older', store=True, copied=True, tracking=0, )
+    report_currency_id = fields.Many2one(string='Report Currency', store=True, copied=True, tracking=0,
+                                         comodel_name='res.currency', )
 
 
 class VencidaporCobrar(models.Model):
@@ -595,6 +620,31 @@ class VencidaporCobrar(models.Model):
     partner_name = fields.Char(string='Partner Name', store=True, copied=True, tracking=0, )
     partner_trust = fields.Char(string='Partner Trust', store=True, copied=True, tracking=0, )
     report_date = fields.Date(string='Report Date', store=True, copied=True, tracking=0, )
+    account_id = fields.Many2one(string='Account', store=True, copied=True, tracking=0,
+                                 comodel_name='account.account', )
+    analytic_account_id = fields.Many2one(string='Analytic Account', store=True, copied=True, tracking=0,
+                                          comodel_name='account.analytic.account', )
+    analytic_tag_ids = fields.Many2many(string='Analytic Tag', store=True, copied=True, tracking=0,
+                                        comodel_name='account.analytic.tag', )
+    balance = fields.Monetary(string='Saldo', store=True, copied=True, tracking=0, )
+    company_id = fields.Many2one(string='Company', store=True, copied=True, tracking=0, comodel_name='res.company', )
+    credit = fields.Monetary(string='Credit', store=True, copied=True, tracking=0, )
+    currency_id = fields.Many2one(string='Moneda', store=True, copied=True, tracking=0, comodel_name='res.currency', )
+    debit = fields.Monetary(string='Debit', store=True, copied=True, tracking=0, )
+    journal_id = fields.Many2one(string='Journal', store=True, copied=True, tracking=0,
+                                 comodel_name='account.journal', )
+    move_id = fields.Many2one(string='Move', store=True, copied=True, tracking=0, comodel_name='account.move', )
+    partner_id = fields.Many2one(string='Asociado', store=True, copied=True, tracking=0, comodel_name='res.partner', )
+    payment_id = fields.Many2one(string='Payment', store=True, copied=True, tracking=0,
+                                 comodel_name='account.payment', )
+    period0 = fields.Monetary(string='As of: ', store=True, copied=True, tracking=0, )
+    period1 = fields.Monetary(string='1 - 30', store=True, copied=True, tracking=0, )
+    period2 = fields.Monetary(string='31 - 60', store=True, copied=True, tracking=0, )
+    period3 = fields.Monetary(string='61 - 90', store=True, copied=True, tracking=0, )
+    period4 = fields.Monetary(string='91 - 120', store=True, copied=True, tracking=0, )
+    period5 = fields.Monetary(string='Older', store=True, copied=True, tracking=0, )
+    report_currency_id = fields.Many2one(string='Report Currency', store=True, copied=True, tracking=0,
+                                         comodel_name='res.currency', )
 
 
 class CuentaAnalitica(models.Model):
@@ -617,6 +667,35 @@ class CuentaAnalitica(models.Model):
     project_count = fields.Integer(string='Cuenta de proyecto', readonly=True, tracking=0, )
     puesto = fields.Char(string='Puesto', store=True, copied=True, tracking=0, )
     sede = fields.Char(string='Sede', store=True, copied=True, tracking=0, )
+    balance = fields.Monetary(string='Balance', readonly=True, tracking=0, )
+    city_id = fields.Many2one(string='Ciudad', store=True, copied=True, tracking=0, comodel_name='res.city', )
+    company_id = fields.Many2one(string='Compañía', store=True, copied=True, tracking=0, comodel_name='res.company', )
+    credit = fields.Monetary(string='Haber', readonly=True, tracking=0, )
+    # crossovered_budget_line_ids = fields.One2many(string='Líneas de Presupuesto', store=True, tracking=0,
+    #                                               comodel_name='crossovered.budget.lines', )
+    currency_id = fields.Many2one(string='Moneda', readonly=True, tracking=0, comodel_name='res.currency', )
+    debit = fields.Monetary(string='Debe', readonly=True, tracking=0, )
+    # failed_message_ids = fields.One2many(string='Failed Messages', store=True, tracking=0,
+    #                                      comodel_name='mail.message', )
+    group_id = fields.Many2one(string='Grupo', store=True, copied=True, tracking=0,
+                               comodel_name='account.analytic.group', )
+    linea_servicio_id = fields.Many2one(string='Linea de servicio', store=True, copied=True, tracking=0,
+                                        comodel_name='project.linea.negocio', )
+    line_ids = fields.One2many(string='Líneas analíticas', store=True, tracking=0,
+                               comodel_name='account.analytic.line', )
+    message_channel_ids = fields.Many2many(string='Seguidores (Canales)', readonly=True, tracking=0,
+                                           comodel_name='mail.channel', )
+    message_follower_ids = fields.One2many(string='Seguidores', store=True, tracking=0, comodel_name='mail.followers', )
+    #message_ids = fields.One2many(string='Mensajes', store=True, tracking=0, comodel_name='mail.message', )
+    message_main_attachment_id = fields.Many2one(string='Adjuntos principales', index=True, store=True, tracking=0,
+                                                 comodel_name='ir.attachment', )
+    message_partner_ids = fields.Many2many(string='Seguidores (Contactos)', readonly=True, tracking=0,
+                                           comodel_name='res.partner', )
+    partner_id = fields.Many2one(string='Cliente', store=True, copied=True, tracking=100, comodel_name='res.partner', )
+    project_ids = fields.One2many(string='Proyectos', store=True, tracking=0, comodel_name='project.project', )
+    regional_id = fields.Many2one(string='Regional', store=True, copied=True, tracking=0, comodel_name='res.regional', )
+    # website_message_ids = fields.One2many(string='Mensajes del sitio web', store=True, tracking=0,
+    #                                       comodel_name='mail.message', )
 
 
 class DistribucionAnalitica(models.Model):
@@ -626,6 +705,16 @@ class DistribucionAnalitica(models.Model):
     date_start = fields.Date(string='Fecha de inicio', store=True, copied=True, tracking=0, )
     date_stop = fields.Date(string='Fecha final', store=True, copied=True, tracking=0, )
     sequence = fields.Integer(string='Secuencia', store=True, copied=True, tracking=0, )
+    account_id = fields.Many2one(string='Cuenta', store=True, copied=True, tracking=0, comodel_name='account.account', )
+    analytic_id = fields.Many2one(string='Cuenta Analítica', store=True, copied=True, tracking=0,
+                                  comodel_name='account.analytic.account', )
+    analytic_tag_ids = fields.Many2many(string='Etiquetas analíticas', store=True, copied=True, tracking=0,
+                                        comodel_name='account.analytic.tag', )
+    company_id = fields.Many2one(string='Compañía', store=True, copied=True, tracking=0, comodel_name='res.company', )
+    partner_id = fields.Many2one(string='Asociado', store=True, copied=True, tracking=0, comodel_name='res.partner', )
+    product_id = fields.Many2one(string='Producto', store=True, copied=True, tracking=0,
+                                 comodel_name='product.product', )
+    user_id = fields.Many2one(string='Usuario', store=True, copied=True, tracking=0, comodel_name='res.users', )
 
 
 class LineaAnalitica(models.Model):
@@ -641,11 +730,55 @@ class LineaAnalitica(models.Model):
     ref = fields.Char(string='Ref.', store=True, copied=True, tracking=0, )
     start_date = fields.Datetime(string='Fecha de inicio', store=True, copied=True, tracking=0, )
     unit_amount = fields.Float(string='Cantidad', store=True, copied=True, tracking=0, )
+    account_id = fields.Many2one(string='Cuenta Analítica', index=True, store=True, required=True, copied=True,
+                                 tracking=0, comodel_name='account.analytic.account', )
+    amount = fields.Monetary(string='Importe', store=True, required=True, copied=True, tracking=0, )
+    change_id = fields.Many2one(string='Generador de Diferencia en Cambio', store=True, copied=True, tracking=0,
+                                comodel_name='change.difference', )
+    commercial_id = fields.Many2one(string='Comercial', store=True, copied=True, tracking=0,
+                                    comodel_name='account.commercial', )
+    company_id = fields.Many2one(string='Compañía', store=True, readonly=True, required=True, copied=True, tracking=0,
+                                 comodel_name='res.company', )
+    currency_id = fields.Many2one(string='Moneda', store=True, readonly=True, tracking=0, comodel_name='res.currency', )
+    department_id = fields.Many2one(string='Área/Departamento/Contrato', store=True, readonly=True, tracking=0,
+                                    comodel_name='hr.department', )
+    dimension_project_id = fields.Many2one(string='Proyecto', store=True, copied=True, tracking=0,
+                                           comodel_name='project.project', )
+    employee_id = fields.Many2one(string='Empleado', store=True, copied=True, tracking=0, comodel_name='hr.employee', )
+    encoding_uom_id = fields.Many2one(string='Codificación de UdM', readonly=True, tracking=0, comodel_name='uom.uom', )
+    general_account_id = fields.Many2one(string='Cuenta financiera', store=True, readonly=True, tracking=0,
+                                         comodel_name='account.account', )
+    group_id = fields.Many2one(string='Grupo', store=True, readonly=True, tracking=0,
+                               comodel_name='account.analytic.group', )
+    move_id = fields.Many2one(string='Apunte contable', index=True, store=True, copied=True, tracking=0,
+                              comodel_name='account.move.line', )
+    partner_id = fields.Many2one(string='Asociado', store=True, copied=True, tracking=0, comodel_name='res.partner', )
+    product_id = fields.Many2one(string='Producto', store=True, copied=True, tracking=0,
+                                 comodel_name='product.product', )
+    product_uom_category_id = fields.Many2one(string='Categoría', readonly=True, tracking=0,
+                                              comodel_name='uom.category', )
+    product_uom_id = fields.Many2one(string='Unidad de medida', store=True, copied=True, tracking=0,
+                                     comodel_name='uom.uom', )
+    project_id = fields.Many2one(string='Proyecto', store=True, copied=True, tracking=0,
+                                 comodel_name='project.project', )
+    regional_id = fields.Many2one(string='Sucursal', store=True, copied=True, tracking=0, comodel_name='res.regional', )
+    so_line = fields.Many2one(string='Elemento del pedido de venta', store=True, copied=True, tracking=0,
+                              comodel_name='sale.order.line', )
+    tag_ids = fields.Many2many(string='Categorías', store=True, copied=True, tracking=0,
+                               comodel_name='account.analytic.tag', )
+    task_id = fields.Many2one(string='Tarea', index=True, store=True, copied=True, tracking=0,
+                              comodel_name='project.task', )
+    ticket_id = fields.Many2one(string='Ticket de servicio de ayuda', store=True, copied=True, tracking=0,
+                                comodel_name='helpdesk.ticket', )
+    timesheet_invoice_id = fields.Many2one(string='Facturas de clientes', store=True, readonly=True, tracking=0,
+                                           comodel_name='account.move', )
+    user_id = fields.Many2one(string='Usuario', store=True, copied=True, tracking=0, comodel_name='res.users', )
 
 
 class Activo(models.Model):
     _name = 'account.asset'
     _description = 'Activo'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     accumulated_value = fields.Float(string='Valor depreciación acumulada', store=True, copied=True, tracking=0, )
     active = fields.Boolean(string='Activo', store=True, copied=True, tracking=0, )
@@ -697,6 +830,55 @@ class Activo(models.Model):
     value_depreciated_niff = fields.Float(string='Valor amortizado Niif', store=True, readonly=True, tracking=0, )
     value_residual = fields.Float(string='Valor residual', store=True, readonly=True, tracking=0, )
     value_residual_niff = fields.Float(string='Valor residual Niif', store=True, readonly=True, tracking=0, )
+    account_analytic_id = fields.Many2one(string='Cuenta analítica', store=True, copied=True, tracking=0,
+                                          comodel_name='account.analytic.account', )
+    analytic_account_id_niff = fields.Many2one(string='Cuenta analítica Niif', store=True, copied=True, tracking=0,
+                                               comodel_name='account.analytic.account', )
+    analytic_tag_ids = fields.Many2many(string='Analytic tags', store=True, copied=True, tracking=0,
+                                        comodel_name='account.analytic.tag', )
+    centrocosto_id = fields.Many2one(string='Centro de costo', store=True, copied=True, tracking=0,
+                                     comodel_name='account.analytic.account', )
+    commercial_distribution_id = fields.Many2one(string='Distribución por comercial', store=True, copied=True,
+                                                 tracking=0, comodel_name='account.commercial.distribution', )
+    company_currency_id = fields.Many2one(string='Moneda la compañía', store=True, readonly=True, tracking=0,
+                                          comodel_name='res.currency', )
+    company_id = fields.Many2one(string='Compañía', store=True, readonly=True, required=True, copied=True, tracking=0,
+                                 comodel_name='res.company', )
+    group_ids = fields.Many2many(string='Grupos de activo', store=True, copied=True, tracking=0,
+                                 comodel_name='account.asset.group', )
+    lot_ids = fields.Many2many(string='Lotes', store=True, copied=True, tracking=0,
+                               comodel_name='stock.production.lot', )
+    message_channel_ids = fields.Many2many(string='Followers (Channels)', readonly=True, tracking=0,
+                                           comodel_name='mail.channel', )
+    message_main_attachment_id = fields.Many2one(string='Main Attachment', index=True, store=True, tracking=0,
+                                                 comodel_name='ir.attachment', )
+    message_partner_ids = fields.Many2many(string='Followers (Partners)', readonly=True, tracking=0,
+                                           comodel_name='res.partner', )
+    move_eliminated_id = fields.Many2one(string='Baja Inventario Fiscal', store=True, readonly=True, tracking=0,
+                                         comodel_name='account.move', )
+    move_eliminated_niif_id = fields.Many2one(string='Baja Inventario Fiscal Niif', store=True, readonly=True,
+                                              tracking=0, comodel_name='account.move', )
+    partner_id = fields.Many2one(string='Empresa', store=True, copied=True, tracking=0, comodel_name='res.partner', )
+    partner_id_niff = fields.Many2one(string='Partner', store=True, copied=True, tracking=0,
+                                      comodel_name='res.partner', )
+    prodlot_id = fields.Many2one(string='Serial', store=True, copied=True, tracking=0,
+                                 comodel_name='stock.production.lot', )
+    product_id = fields.Many2one(string='Producto', store=True, copied=True, tracking=0,
+                                 comodel_name='product.product', )
+    profile_id = fields.Many2one(string='Categoría de activo', store=True, required=True, copied=True, tracking=0,
+                                 comodel_name='account.asset.profile', )
+    profile_id_niff = fields.Many2one(string='Categoría de activo Niif', store=True, copied=True, tracking=0,
+                                      comodel_name='account.asset.profile', )
+    project_distribution_id = fields.Many2one(string='Distribución', store=True, copied=True, tracking=0,
+                                              comodel_name='project.distribution', )
+    puesto_id = fields.Many2one(string='Puesto', store=True, copied=True, tracking=0, comodel_name='hr.roster.puesto', )
+    regional_id = fields.Many2one(string='Sucursal', store=True, copied=True, tracking=0, comodel_name='res.regional', )
+    user_id = fields.Many2one(string='Responsable', store=True, copied=True, tracking=0, comodel_name='res.partner', )
+    x_city_id = fields.Many2one(string='Ciudad', store=True, copied=True, tracking=1, comodel_name='res.city', )
+
+    account_move_line_ids = fields.One2many(string='Asientos', comodel_name='account.move.line', inverse_name='move_id', readonly=True, copy=False,)
+    depreciation_line_niff_ids = fields.One2many(string='Depreciation Lines (NIIF)', comodel_name='account.asset.line.niff', inverse_name='asset_id', copy=False, tracking=True,)
+    depreciation_line_ids = fields.One2many(string='Líneas de amortización', comodel_name='account.asset.line', inverse_name='asset_id', copy=False, tracking=True,)
 
 
 class AccountAssetAloseWizard(models.Model):
@@ -736,6 +918,12 @@ class LineaActivo(models.Model):
     move_check = fields.Boolean(string='Asentado', store=True, readonly=True, tracking=0, )
     name = fields.Char(string='Nombre de la amortización', store=True, readonly=True, copied=True, tracking=0, )
     remaining_value = fields.Float(string='Amortización del siguiente período', store=True, readonly=True, tracking=0, )
+    asset_id = fields.Many2one(string='Activo', store=True, required=True, copied=True, tracking=0,
+                               comodel_name='account.asset', )
+    move_id = fields.Many2one(string='Asiento de amortización', store=True, readonly=True, copied=True, tracking=0,
+                              comodel_name='account.move', )
+    previous_id = fields.Many2one(string='Línea de amortización previa', store=True, readonly=True, copied=True,
+                                  tracking=0, comodel_name='account.asset.line', )
 
 
 class GrupoActivo(models.Model):
@@ -752,6 +940,12 @@ class GrupoActivo(models.Model):
     move_check = fields.Boolean(string='Posted', store=True, readonly=True, tracking=0, )
     name = fields.Char(string='Depreciation Name', store=True, readonly=True, copied=True, tracking=0, )
     remaining_value = fields.Float(string='Next Period Depreciation', store=True, readonly=True, tracking=0, )
+    asset_id = fields.Many2one(string='Activo', store=True, required=True, copied=True, tracking=0,
+                               comodel_name='account.asset', )
+    move_id = fields.Many2one(string='Depreciation Entry', store=True, readonly=True, copied=True, tracking=0,
+                              comodel_name='account.move', )
+    previous_id = fields.Many2one(string='Previous Depreciation Line', store=True, readonly=True, copied=True,
+                                  tracking=0, comodel_name='account.asset.line.niff', )
 
 
 class AccountAssetProcessWizard(models.Model):

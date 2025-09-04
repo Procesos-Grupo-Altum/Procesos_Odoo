@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea2abae6-959e-47f2-be3d-d4c1dfceb39a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desarrollovise/pazysalvo/models/pazysalvo.py" beforeDir="false" afterPath="$PROJECT_DIR$/desarrollovise/pazysalvo/models/pazysalvo.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/desarrollovise/pazysalvo/models/res_partner.py" beforeDir="false" afterPath="$PROJECT_DIR$/desarrollovise/pazysalvo/models/res_partner.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desarrollovise/pazysalvo/views/view_pazysalvo.xml" beforeDir="false" afterPath="$PROJECT_DIR$/desarrollovise/pazysalvo/views/view_pazysalvo.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +16,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectColorInfo">{
@@ -51,7 +58,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/odoo/odoo-bin" />
-      <option name="PARAMETERS" value="-c C:\Procesos_Odoo\Odoo14\o14_com.conf  --db-filter=^dev-vise --http-port 8071 -d dev-vise" />
+      <option name="PARAMETERS" value="-c C:\Procesos_Odoo\Odoo14\o14_com.conf  --db-filter=^dev-vise --http-port 8071 -d dev-vise -u pazysalvo,altumforms" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -85,7 +92,23 @@
             <list>
               <RecentGroup>
                 <option name="FILTER_VALUES">
+                  <option value="main" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
                   <option value="origin/main" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="*" />
                 </option>
               </RecentGroup>
             </list>
@@ -100,10 +123,11 @@
             <State>
               <option name="FILTERS">
                 <map>
-                  <entry key="branch">
+                  <entry key="roots">
                     <value>
                       <list>
-                        <option value="origin/main" />
+                        <option value="$PROJECT_DIR$/desarrollovise/web" />
+                        <option value="$PROJECT_DIR$/.." />
                       </list>
                     </value>
                   </entry>

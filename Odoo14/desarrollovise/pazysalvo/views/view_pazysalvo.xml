@@ -41,8 +41,8 @@
                             </group>
                         </group>
                         <group string="Validaciones" col="4">
-                            <field name="x_1_entrego_carnet_presentacion" string="1. Entregó Carnet de Presentación"/>
-                            <field name="x_2_entrego_carnet_arl" string="2. Entregó Carnet de ARL"/>
+<!--                            <field name="x_1_entrego_carnet_presentacion" string="1. Entregó Carnet de Presentación"/>-->
+<!--                            <field name="x_2_entrego_carnet_arl" string="2. Entregó Carnet de ARL"/>-->
                         </group>
                       </sheet>
                     </div>
