@@ -1,0 +1,1 @@
+-c C:\Procesos_Odoo\Odoo14\o14_com.conf  --db-filter=^dev-vise --http-port 8071 -d dev-vise
