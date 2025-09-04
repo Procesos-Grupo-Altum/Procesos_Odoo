@@ -1,8 +1,26 @@
 -c C:\Procesos_Odoo\Odoo14\o14_com.conf  --db-filter=^dev-vise --http-port 8071 -d dev-vise
 
-echo "# Odoo" >> README.md
+
+
+--Inicializar un repositorio
 git init
 git commit -m "first commit"
 git branch -M main
 git remote add origin https://github.com/Procesos-Grupo-Altum/Odoo.git
+git push -u origin main
+
+
+
+--Actualizar repositorio de forma Local
+git status
+git add .
+git commit -m "first commit"
+git push -u origin main
+
+
+
+--Actualizar un repositorio de forma remota
+
+git fetch origin
+git pull --rebase origin main
 git push -u origin main
