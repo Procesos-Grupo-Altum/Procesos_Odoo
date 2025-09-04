@@ -534,6 +534,31 @@ class AgedPartnerBalances(models.Model):
     partner_name = fields.Char(string='Partner Name', store=True, copied=True, tracking=0, )
     partner_trust = fields.Char(string='Partner Trust', store=True, copied=True, tracking=0, )
     report_date = fields.Date(string='Report Date', store=True, copied=True, tracking=0, )
+    account_id = fields.Many2one(string='Account', store=True, copied=True, tracking=0,
+                                 comodel_name='account.account', )
+    analytic_account_id = fields.Many2one(string='Analytic Account', store=True, copied=True, tracking=0,
+                                          comodel_name='account.analytic.account', )
+    analytic_tag_ids = fields.Many2many(string='Analytic Tag', store=True, copied=True, tracking=0,
+                                        comodel_name='account.analytic.tag', )
+    balance = fields.Monetary(string='Saldo', store=True, copied=True, tracking=0, )
+    company_id = fields.Many2one(string='Company', store=True, copied=True, tracking=0, comodel_name='res.company', )
+    credit = fields.Monetary(string='Credit', store=True, copied=True, tracking=0, )
+    currency_id = fields.Many2one(string='Moneda', store=True, copied=True, tracking=0, comodel_name='res.currency', )
+    debit = fields.Monetary(string='Debit', store=True, copied=True, tracking=0, )
+    journal_id = fields.Many2one(string='Journal', store=True, copied=True, tracking=0,
+                                 comodel_name='account.journal', )
+    move_id = fields.Many2one(string='Move', store=True, copied=True, tracking=0, comodel_name='account.move', )
+    partner_id = fields.Many2one(string='Asociado', store=True, copied=True, tracking=0, comodel_name='res.partner', )
+    payment_id = fields.Many2one(string='Payment', store=True, copied=True, tracking=0,
+                                 comodel_name='account.payment', )
+    period0 = fields.Monetary(string='As of: ', store=True, copied=True, tracking=0, )
+    period1 = fields.Monetary(string='1 - 30', store=True, copied=True, tracking=0, )
+    period2 = fields.Monetary(string='31 - 60', store=True, copied=True, tracking=0, )
+    period3 = fields.Monetary(string='61 - 90', store=True, copied=True, tracking=0, )
+    period4 = fields.Monetary(string='91 - 120', store=True, copied=True, tracking=0, )
+    period5 = fields.Monetary(string='Older', store=True, copied=True, tracking=0, )
+    report_currency_id = fields.Many2one(string='Report Currency', store=True, copied=True, tracking=0,
+                                         comodel_name='res.currency', )
 
 
 class VencidaporPagar(models.Model):
